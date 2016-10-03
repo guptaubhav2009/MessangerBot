@@ -50,7 +50,7 @@ function postWatsonRequest(event, message){
 						if (err) {
 							console.error(err);
 						} else {
-							//console.log("Watson request completed " +JSON.stringify(response, null, 2)));
+							console.log("Watson request completed " +JSON.stringify(response, null, 2));
 							sendMessage(event.sender.id, {text: JSON.stringify(response, null, 2)});
 						}
 				});
