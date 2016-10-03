@@ -62,18 +62,12 @@ function postWatsonRequest(event, message){
 // generic function sending messages
 function sendMessage(recipientId, message) {
     request({
-        url: 'https://graph.facebook.com/v2.6/me/thread_settings',
+        url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
         method: 'POST',
         json: {
             recipient: {id: recipientId},
-			setting_type:"call_to_actions",
-            thread_state:"new_thread",
-             call_to_actions:[
-              {
-                "payload":message
-              }
-             ]
+            message: message,
         }
     }, function(error, response, body) {
         if (error) {
