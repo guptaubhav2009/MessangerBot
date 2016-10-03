@@ -54,7 +54,7 @@ function postWatsonRequest(event, message){
 							console.log("Watson request completed " +JSON.stringify(response, null, 2));
 							var responseMessage = JSON.parse(JSON.stringify(response, null, 2)).output.text;
 							console.log("FinalMessage " +responseMessage);
-							sendMessage(event.sender.id, {text: utf8.encode(responseMessage});
+							sendMessage(event.sender.id, {text: utf8.encode(responseMessage)});
 						}
 				});
 }
