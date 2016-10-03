@@ -5,8 +5,8 @@ var ConversationV1 = require('watson-developer-cloud/conversation/v1');
 var app = express();
 
 var conversation = new ConversationV1({
-  username: 'guptanubhav2009@gmail.com',
-  password: 'Useme@pwd',
+  username: 'f6230e0a-cc43-474f-a0e3-eac5325e7aec',
+  password: 'leYCyWnWXdlR',
   version_date: '2016-07-01'
 });
 
