@@ -36,14 +36,14 @@ app.post('/webhook', function (req, res) {
         var event = events[i];
         if (event.message && event.message.text) {
 			//console.log("In post webhook " + event.message.text);
-			postWatsonRequest(event, event.message.text);
+			postWatsonRequest(event.sender.id, event.message.text);
            // sendMessage(event.sender.id, {text: "Echo: " + event.message.text});
         }
     }
     res.sendStatus(200);
 });
 
-function postWatsonRequest(event, message){
+function postWatsonRequest(id, message){
 	conversation.message({
 			input: { text: message },
 			workspace_id: 'e1c9c10b-5b65-4866-a20d-317fca1b59e6'
@@ -54,7 +54,7 @@ function postWatsonRequest(event, message){
 							//console.log("Watson request completed " +JSON.stringify(response, null, 2));
 							var responseMessage = JSON.parse(JSON.stringify(response, null, 2)).output.text;
 							console.log("FinalMessage " +responseMessage);
-							sendMessage(event.sender.id, {text: ""+responseMessage});
+							sendMessage(id, {text: ""+responseMessage});
 						}
 				});
 }
