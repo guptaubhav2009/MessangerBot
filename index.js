@@ -1,7 +1,14 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var request = require('request');
+var ConversationV1 = require('watson-developer-cloud/conversation/v1');
 var app = express();
+
+var conversation = new ConversationV1({
+  username: 'guptanubhav2009@gmail.com',
+  password: 'Useme@pwd',
+  version_date: '2016-07-01'
+});
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -27,11 +34,25 @@ app.post('/webhook', function (req, res) {
     for (i = 0; i < events.length; i++) {
         var event = events[i];
         if (event.message && event.message.text) {
-            sendMessage(event.sender.id, {text: "Echo: " + event.message.text});
+			postWatsonRequest(event.message.text);
+           // sendMessage(event.sender.id, {text: "Echo: " + event.message.text});
         }
     }
     res.sendStatus(200);
 });
+
+function postWatsonRequest(message){
+	conversation.message({
+			input: { text: message },
+			workspace_id: 'MessangerBotConv'
+			}, function(err, response) {
+						if (err) {
+							console.error(err);
+						} else {
+							sendMessage(event.sender.id, {text: JSON.stringify(response, null, 2)});
+						}
+				});
+}
 
 // generic function sending messages
 function sendMessage(recipientId, message) {
