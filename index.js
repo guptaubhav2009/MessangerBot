@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var request = require('request');
+var utf8 = require('utf8');
 var ConversationV1 = require('watson-developer-cloud/conversation/v1');
 var app = express();
 
@@ -53,7 +54,7 @@ function postWatsonRequest(event, message){
 							console.log("Watson request completed " +JSON.stringify(response, null, 2));
 							var responseMessage = JSON.parse(JSON.stringify(response, null, 2)).output.text;
 							console.log("FinalMessage " +responseMessage);
-							sendMessage(event.sender.id, {text: responseMessage});
+							sendMessage(event.sender.id, {text: utf8.encode(responseMessage});
 						}
 				});
 }
