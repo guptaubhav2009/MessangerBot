@@ -51,7 +51,8 @@ function postWatsonRequest(event, message){
 							console.error(err);
 						} else {
 							console.log("Watson request completed " +JSON.stringify(response, null, 2));
-							sendMessage(event.sender.id, {text: JSON.stringify(response, null, 2)});
+							var responseMessage = JSON.parse(JSON.stringify(response, null, 2));
+							sendMessage(event.sender.id, {text: responseMessage.output.text});
 						}
 				});
 }
