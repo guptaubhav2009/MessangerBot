@@ -35,7 +35,7 @@ app.post('/webhook', function (req, res) {
     for (i = 0; i < events.length; i++) {
         var event = events[i];
         if (event.message && event.message.text) {
-			//console.log("In post webhook " + event.message.text);
+			console.log("In post webhook " + event.message.text);
 			postWatsonRequest(event.sender.id, event.message.text);
            // sendMessage(event.sender.id, {text: "Echo: " + event.message.text});
         }
@@ -54,6 +54,7 @@ function postWatsonRequest(id, message){
 							//console.log("Watson request completed " +JSON.stringify(response, null, 2));
 							var responseMessage = JSON.parse(JSON.stringify(response, null, 2)).output.text;
 							console.log("FinalMessage " +responseMessage);
+							console.log("id in watson requwst "+ id);
 							sendMessage(id, {text: ""+responseMessage});
 						}
 				});
