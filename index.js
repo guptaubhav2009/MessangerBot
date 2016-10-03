@@ -67,7 +67,13 @@ function sendMessage(recipientId, message) {
         method: 'POST',
         json: {
             recipient: {id: recipientId},
-            message: message,
+			setting_type:"call_to_actions",
+            thread_state:"new_thread",
+             call_to_actions:[
+              {
+                "payload":message
+              }
+             ]
         }
     }, function(error, response, body) {
         if (error) {
