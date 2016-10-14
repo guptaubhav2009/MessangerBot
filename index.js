@@ -58,7 +58,7 @@ function postWatsonRequest(id, message){
 							responseMessage = ""+responseMessage;
 							//console.log("FinalMessage " +responseMessage);
 							//console.log("id in watson requwst "+ id);
-							if (stringAPI.contains('eating')){
+							if (stringAPI(responseMessage).contains('eating')){
 								
 								var GEOENHANCE_API_CALL = 'https://api.pitneybowes.com/location-intelligence/geoenhance/v1/poi/bylocation?latitude=61.3346877&longitude=16.3980532&category=1002%2C1013%2C1078&maxCandidates=10&searchRadius=10560&searchRadiusUnit=feet&searchDataset=PBData&searchPriority=N';
 								requestify.get(GEOENHANCE_API_CALL).then(function(response) {
@@ -67,7 +67,7 @@ function postWatsonRequest(id, message){
 
 								
 });
-							}else if (str.contains('911')){
+							}else if (stringAPI(responseMessage).contains('911')){
 								
 							}else{
 								sendMessage(id, {text: responseMessage});
