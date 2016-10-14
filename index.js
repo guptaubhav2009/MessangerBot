@@ -76,10 +76,19 @@ function postWatsonRequest(id, message){
 									// Get the response body (JSON parsed - JSON response or jQuery object in case of XML response)
 									
 									var liapiResponse = JSON.parse(JSON.stringify(response.getBody(), null, 2));
+									var pois = "Here is the list of interested items found!" + "\n";
+									var i, location, j, poin, k, name;
 									//console.log(liapiResponse);
-									var pois = "Listed are the places of interest, I found  " + "\n";
-									for(var i = 0; i < liapiResponse.location.poi.length; i++){
-										pois = pois + liapiResponse.location.poi[i].name + "\n";
+									for (i = 0; i < liapiResponse.location.length; i++)
+									{
+									  location = liapiResponse.location[i];
+
+									  for (j = 0; j < location.poi.length; j++)
+									  {
+										poi = location.poi[j];
+										pois = pois + poi.name + "\n";
+										
+									  }
 									}
 									console.log("pois "+": " + pois);
 									sendMessage(id, {text: pois});
