@@ -81,7 +81,7 @@ function postWatsonRequest(id, message){
 										//	}
 									//}
 									console.log("pois "+": " + pois);
-									sendMessage(id, {text: responseMessage});
+									sendMessage(id, {text: pois});
 								});
 							}else if (stringAPI(responseMessage).contains('911')){
 								console.log("Making Geo 911 API call");
