@@ -79,7 +79,7 @@ function postWatsonRequest(id, message){
 									//console.log(liapiResponse);
 									var pois = "Listed are the places of interest, I found  " + "\n";
 									for(var i = 0; i < liapiResponse.location.poi.length; i++){
-										pois = pois + liapiResponse.location.poi.name + "\n";
+										pois = pois + liapiResponse.location.poi[i].name + "\n";
 									}
 									console.log("pois "+": " + pois);
 									sendMessage(id, {text: pois});
