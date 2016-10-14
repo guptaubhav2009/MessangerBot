@@ -89,7 +89,27 @@ function postWatsonRequest(id, message){
 									sendMessage(id, {text: pois});
 								});
 							}else if (stringAPI(responseMessage).contains('911')){
+								sendMessage(id, {text: responseMessage});
 								console.log("Making Geo 911 API call");
+								var GEOENHANCE_API_CALL = 'https://api.pitneybowes.com/location-intelligence/geo911/v1/psap/bylocation?latitude=35.0118&longitude=-81.9571';
+								requestify.request(GEOENHANCE_API_CALL,{
+									method: 'GET',
+									headers: {
+												'Authorization': 'Bearer MQpdwBU6XzwnCADuGab2PfnIhSXC'
+											 }
+								}).then(function(response) {
+									//console.log("Got response Geoenhance request");
+									// Get the response body (JSON parsed - JSON response or jQuery object in case of XML response)
+									
+									var liapiResponse = JSON.parse(JSON.stringify(response.getBody(), null, 2));
+									var contact = "Here is the contact detail!" + "\n";
+									contact = contact + "Name! " + liapiResponse.title + " " + liapiResponse.prefix + " " + liapiResponse.firstName +
+											  liapiResponse.lastName + "\n";
+									contact = contact + "Phone number! " + liapiResponse.phone;
+									
+									console.log("contact details "+": " + contact);
+									sendMessage(id, {text: contact});
+								});
 							}else{
 								sendMessage(id, {text: responseMessage});
 							}
