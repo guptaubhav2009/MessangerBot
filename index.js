@@ -4,6 +4,7 @@ var request = require('request');
 //var utf8 = require('utf8');
 var ConversationV1 = require('watson-developer-cloud/conversation/v1');
 var app = express();
+var requestify = require('requestify');
 
 var conversation = new ConversationV1({
   username: 'f6230e0a-cc43-474f-a0e3-eac5325e7aec',
@@ -51,7 +52,7 @@ function postWatsonRequest(id, message){
 						if (err) {
 							console.error(err);
 						} else {
-							console.log("Watson request completed " +JSON.stringify(response, null, 2)); //
+							//console.log("Watson request completed " +JSON.stringify(response, null, 2)); //
 							var responseMessage = JSON.parse(JSON.stringify(response, null, 2)).output.text;
 							//console.log("FinalMessage " +responseMessage);
 							//console.log("id in watson requwst "+ id);
