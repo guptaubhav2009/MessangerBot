@@ -103,8 +103,8 @@ function postWatsonRequest(id, message){
 									
 									var liapiResponse = JSON.parse(JSON.stringify(response.getBody(), null, 2));
 									var contact = "Here is the contact detail!" + "\n";
-									contact = contact + "Name! " + liapiResponse.title + " " + liapiResponse.prefix + " " + liapiResponse.firstName +
-											  liapiResponse.lastName + "\n";
+									contact = contact + "Name! " + liapiResponse.contactPerson.title + " " + liapiResponse.contactPerson.prefix + " " + liapiResponse.contactPerson.firstName +
+											  " " + liapiResponse.contactPerson.lastName + "\n";
 									contact = contact + "Phone number! " + liapiResponse.phone;
 									
 									console.log("contact details "+": " + contact);
