@@ -6,7 +6,7 @@ var ConversationV1 = require('watson-developer-cloud/conversation/v1');
 var app = express();
 var requestify = require('requestify');
 var stringAPI = require('string');
-var GEOAPIS_V1 = require('./LocationIntelligenceSDK-2.5.0-min.js');
+//var GEOAPIS_V1 = require('./LocationIntelligenceSDK-2.5.0-min.js');
 
 
 var conversation = new ConversationV1({
@@ -62,13 +62,19 @@ function postWatsonRequest(id, message){
 							//console.log("id in watson requwst "+ id);
 							if (stringAPI(responseMessage).contains('eating')){
 								console.log("Making Geoenhance API call");
-								var GEOENHANCE_API_CALL = 'https://api.pitneybowes.com/location-intelligence/geoenhance/v1/poi/bylocation?latitude=61.3346877&longitude=16.3980532&category=1002%2C1013%2C1078&maxCandidates=10&searchRadius=10560&searchRadiusUnit=feet&searchDataset=PBData&searchPriority=N&access_token=AKiFgTg8MG7AQaYPi7wu8PFzc9Rv';
-								requestify.get(GEOENHANCE_API_CALL).then(function(response) {
-								// Get the response body (JSON parsed - JSON response or jQuery object in case of XML response)
-								console.log(response.getBody());
-
-								
-});
+								//var GE = GEOAPIS_V1.geoEnhance('AKiFgTg8MG7AQaYPi7wu8PFzc9Rv');
+								//GE.getPOI({latitude:42.5309, longitude:-73.6572, category:1023,
+								//searchRadius:10560, maxCandidates:10}, 'geoApisCallback');
+								var GEOENHANCE_API_CALL = 'https://api.pitneybowes.com/location-intelligence/geoenhance/v1/poi/bylocation?latitude=61.3346877&longitude=16.3980532&category=1002%2C1013%2C1078&maxCandidates=10&searchRadius=10560&searchRadiusUnit=feet&searchDataset=PBData&searchPriority=N';
+								requestify.request(GEOENHANCE_API_CALL){
+									method: 'GET',
+									headers: {
+												'Authorization': 'Bearer MQpdwBU6XzwnCADuGab2PfnIhSXC'
+											 }
+								}.then(function(response) {
+									// Get the response body (JSON parsed - JSON response or jQuery object in case of XML response)
+										console.log(response.getBody());
+								});
 							}else if (stringAPI(responseMessage).contains('911')){
 								console.log("Making Geo 911 API call");
 							}else{
