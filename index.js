@@ -80,7 +80,7 @@ function postWatsonRequest(id, message){
 												pois = pois + responseMessage.location.poi.name + "\n";
 											}
 									}
-									console.log("pois "+": "pois);
+									console.log("pois "+": " + pois);
 									sendMessage(id, {text: responseMessage});
 								});
 							}else if (stringAPI(responseMessage).contains('911')){
