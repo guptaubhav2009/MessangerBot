@@ -78,11 +78,8 @@ function postWatsonRequest(id, message){
 									var liapiResponse = JSON.parse(JSON.stringify(response.getBody(), null, 2));
 									//console.log(liapiResponse);
 									var pois = "Listed are the places of interest, I found  " + "\n";
-									for(var key in liapiResponse){
-										console.log(key);
-											if ("name" == key){
-												pois = pois + liapiResponse.location.poi.name + "\n";
-											}
+									for(var i = 0; i < liapiResponse.location.poi.length; i++){
+										pois = pois + liapiResponse.location.poi.name + "\n";
 									}
 									console.log("pois "+": " + pois);
 									sendMessage(id, {text: pois});
