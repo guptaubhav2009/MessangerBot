@@ -74,9 +74,9 @@ function postWatsonRequest(id, message){
 								}).then(function(response) {
 									console.log("Got response Geoenhance request");
 									// Get the response body (JSON parsed - JSON response or jQuery object in case of XML response)
-									var responseMessage = JSON.parse(response.getBody());
-									console.log(responseMessage);
-									var pois = "Listed are the places of interest, I found  " + "\n";
+									var liapiResponse = JSON.parse(response.getBody());
+									console.log(liapiResponse);
+									var pois = "Listed are the places of interest, I found  " ;
 									//for(var key in responseMessage){
 										//	if ("name" == key){
 										//		pois = pois + responseMessage.location.poi.name + "\n";
