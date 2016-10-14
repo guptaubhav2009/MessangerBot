@@ -60,7 +60,7 @@ function postWatsonRequest(id, message){
 							//console.log("FinalMessage " +responseMessage);
 							//console.log("id in watson requwst "+ id);
 							if (stringAPI(responseMessage).contains('eating')){
-								//sendMessage(id, {text: responseMessage});
+								sendMessage(id, {text: responseMessage});
 								//var GE = GEOAPIS_V1.geoEnhance('AKiFgTg8MG7AQaYPi7wu8PFzc9Rv'); MQpdwBU6XzwnCADuGab2PfnIhSXC
 								//GE.getPOI({latitude:42.5309, longitude:-73.6572, category:1023,
 								//searchRadius:10560, maxCandidates:10}, 'geoApisCallback');
@@ -68,7 +68,7 @@ function postWatsonRequest(id, message){
 								requestify.request(GEOENHANCE_API_CALL,{
 									method: 'GET',
 									headers: {
-												'Authorization': 'Bearer AKiFgTg8MG7AQaYPi7wu8PFzc9Rv'
+												'Authorization': 'Bearer MQpdwBU6XzwnCADuGab2PfnIhSXC'
 											 }
 								}).then(function(response) {
 									
