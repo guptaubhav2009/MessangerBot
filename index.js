@@ -6,6 +6,8 @@ var ConversationV1 = require('watson-developer-cloud/conversation/v1');
 var app = express();
 var requestify = require('requestify');
 var stringAPI = require('string');
+var GEOAPIS_V1 = require('./LocationIntelligenceSDK-2.5.0-min.js');
+
 
 var conversation = new ConversationV1({
   username: 'f6230e0a-cc43-474f-a0e3-eac5325e7aec',
@@ -59,8 +61,8 @@ function postWatsonRequest(id, message){
 							//console.log("FinalMessage " +responseMessage);
 							//console.log("id in watson requwst "+ id);
 							if (stringAPI(responseMessage).contains('eating')){
-								
-								var GEOENHANCE_API_CALL = 'https://api.pitneybowes.com/location-intelligence/geoenhance/v1/poi/bylocation?latitude=61.3346877&longitude=16.3980532&category=1002%2C1013%2C1078&maxCandidates=10&searchRadius=10560&searchRadiusUnit=feet&searchDataset=PBData&searchPriority=N';
+								console.log("Making Geoenhance API call");
+								var GEOENHANCE_API_CALL = 'https://api.pitneybowes.com/location-intelligence/geoenhance/v1/poi/bylocation?latitude=61.3346877&longitude=16.3980532&category=1002%2C1013%2C1078&maxCandidates=10&searchRadius=10560&searchRadiusUnit=feet&searchDataset=PBData&searchPriority=N&access_token=AKiFgTg8MG7AQaYPi7wu8PFzc9Rv';
 								requestify.get(GEOENHANCE_API_CALL).then(function(response) {
 								// Get the response body (JSON parsed - JSON response or jQuery object in case of XML response)
 								console.log(response.getBody());
@@ -68,7 +70,7 @@ function postWatsonRequest(id, message){
 								
 });
 							}else if (stringAPI(responseMessage).contains('911')){
-								
+								console.log("Making Geo 911 API call");
 							}else{
 								sendMessage(id, {text: responseMessage});
 							}
