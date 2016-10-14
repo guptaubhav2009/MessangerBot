@@ -81,7 +81,7 @@ function postWatsonRequest(id, message){
 									console.log("liapiResponse.location.length " + liapiResponse.location.length);
 									for (i = 0; i < liapiResponse.location.length; i++)
 									{
-									  poi = liapiResponse.location[i];
+									  poi = liapiResponse.location[i].poi;
 									  console.log("poi name " + poi.name);
 									  pois = pois + poi.name + "\n";
 									}
