@@ -61,7 +61,7 @@ function postWatsonRequest(id, message){
 							//console.log("id in watson requwst "+ id);
 							if (stringAPI(responseMessage).contains('eating')){
 								sendMessage(id, {text: responseMessage});
-								console.log("Posting LIAPI Geoenhance request");
+								//console.log("Posting LIAPI Geoenhance request");
 								//var GE = GEOAPIS_V1.geoEnhance('AKiFgTg8MG7AQaYPi7wu8PFzc9Rv'); MQpdwBU6XzwnCADuGab2PfnIhSXC
 								//GE.getPOI({latitude:42.5309, longitude:-73.6572, category:1023,
 								//searchRadius:10560, maxCandidates:10}, 'geoApisCallback');
@@ -72,13 +72,14 @@ function postWatsonRequest(id, message){
 												'Authorization': 'Bearer MQpdwBU6XzwnCADuGab2PfnIhSXC'
 											 }
 								}).then(function(response) {
-									console.log("Got response Geoenhance request");
+									//console.log("Got response Geoenhance request");
 									// Get the response body (JSON parsed - JSON response or jQuery object in case of XML response)
 									
 									var liapiResponse = JSON.parse(JSON.stringify(response.getBody(), null, 2));
-									console.log(liapiResponse);
+									//console.log(liapiResponse);
 									var pois = "Listed are the places of interest, I found  " + "\n";
 									for(var key in liapiResponse){
+										console.log(key);
 											if ("name" == key){
 												pois = pois + liapiResponse.location.poi.name + "\n";
 											}
