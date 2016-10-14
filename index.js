@@ -60,7 +60,7 @@ function postWatsonRequest(id, message){
 							//console.log("FinalMessage " +responseMessage);
 							//console.log("id in watson requwst "+ id);
 							if (stringAPI(responseMessage).contains('eating')){
-								sendMessage(id, {text: responseMessage});
+								//sendMessage(id, {text: responseMessage});
 								//console.log("Posting LIAPI Geoenhance request");
 								//var GE = GEOAPIS_V1.geoEnhance('AKiFgTg8MG7AQaYPi7wu8PFzc9Rv'); MQpdwBU6XzwnCADuGab2PfnIhSXC
 								//GE.getPOI({latitude:42.5309, longitude:-73.6572, category:1023,
@@ -78,18 +78,18 @@ function postWatsonRequest(id, message){
 									var liapiResponse = JSON.parse(JSON.stringify(response.getBody(), null, 2));
 									var pois = "Here is the list of interested items found!" + "\n";
 									var i, location, j, poi;
-									console.log("liapiResponse.location.length " + liapiResponse.location.length);
+									//console.log("liapiResponse.location.length " + liapiResponse.location.length);
 									for (i = 0; i < liapiResponse.location.length; i++)
 									{
 									  poi = liapiResponse.location[i].poi;
-									  console.log("poi name " + poi.name);
+									 // console.log("poi name " + poi.name);
 									  pois = pois + poi.name + "\n";
 									}
-									console.log("pois "+": " + pois);
+									//console.log("pois "+": " + pois);
 									sendMessage(id, {text: pois});
 								});
 							}else if (stringAPI(responseMessage).contains('911')){
-								sendMessage(id, {text: responseMessage});
+								//sendMessage(id, {text: responseMessage});
 								console.log("Making Geo 911 API call");
 								var GEOENHANCE_API_CALL = 'https://api.pitneybowes.com/location-intelligence/geo911/v1/psap/bylocation?latitude=35.0118&longitude=-81.9571';
 								requestify.request(GEOENHANCE_API_CALL,{
@@ -107,7 +107,7 @@ function postWatsonRequest(id, message){
 											  " " + liapiResponse.contactPerson.lastName + "\n";
 									contact = contact + "Phone number! " + liapiResponse.phone;
 									
-									console.log("contact details "+": " + contact);
+									//console.log("contact details "+": " + contact);
 									sendMessage(id, {text: contact});
 								});
 							}else{
