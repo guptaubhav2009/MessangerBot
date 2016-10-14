@@ -65,7 +65,7 @@ function postWatsonRequest(id, message){
 								//var GE = GEOAPIS_V1.geoEnhance('AKiFgTg8MG7AQaYPi7wu8PFzc9Rv'); MQpdwBU6XzwnCADuGab2PfnIhSXC
 								//GE.getPOI({latitude:42.5309, longitude:-73.6572, category:1023,
 								//searchRadius:10560, maxCandidates:10}, 'geoApisCallback');
-								var GEOENHANCE_API_CALL = 'https://api.pitneybowes.com/location-intelligence/geoenhance/v1/poi/bylocation?latitude=61.3346877&longitude=16.3980532&category=1002%2C1013%2C1078&maxCandidates=10&searchRadius=10560&searchRadiusUnit=feet&searchDataset=PBData&searchPriority=N';
+								var GEOENHANCE_API_CALL = 'https://api.pitneybowes.com/location-intelligence/geoenhance/v1/poi/bylocation?latitude=61.3346877&longitude=16.3980532&category=1002%2C1013%2C1078&maxCandidates=5&searchRadius=10560&searchRadiusUnit=feet&searchDataset=PBData&searchPriority=N';
 								requestify.request(GEOENHANCE_API_CALL,{
 									method: 'GET',
 									headers: {
