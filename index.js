@@ -77,7 +77,7 @@ function postWatsonRequest(id, message){
 									
 									var liapiResponse = JSON.parse(JSON.stringify(response.getBody(), null, 2));
 									var pois = "Here is the list of interested items found!" + "\n";
-									var i, location, j, poin, k, name;
+									var i, location, j, poi;
 									//console.log(liapiResponse);
 									for (i = 0; i < liapiResponse.location.length; i++)
 									{
