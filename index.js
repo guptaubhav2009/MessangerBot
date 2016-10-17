@@ -69,7 +69,7 @@ function postWatsonRequest(id, message){
 								requestify.request(GEOENHANCE_API_CALL,{
 									method: 'GET',
 									headers: {
-												'Authorization': 'Bearer MQpdwBU6XzwnCADuGab2PfnIhSXC'
+												'Authorization': 'Bearer AKiFgTg8MG7AQaYPi7wu8PFzc9Rv'
 											 }
 								}).then(function(response) {
 									//console.log("Got response Geoenhance request");
