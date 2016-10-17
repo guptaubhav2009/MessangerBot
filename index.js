@@ -61,7 +61,7 @@ function postWatsonRequest(id, message){
 							//console.log("id in watson requwst "+ id);
 							if (stringAPI(responseMessage).contains('eating')){
 								//sendMessage(id, {text: responseMessage});
-								//console.log("Posting LIAPI Geoenhance request");
+								console.log("Posting LIAPI Geoenhance request");
 								//var GE = GEOAPIS_V1.geoEnhance('AKiFgTg8MG7AQaYPi7wu8PFzc9Rv'); MQpdwBU6XzwnCADuGab2PfnIhSXC
 								//GE.getPOI({latitude:42.5309, longitude:-73.6572, category:1023,
 								//searchRadius:10560, maxCandidates:10}, 'geoApisCallback');
@@ -72,7 +72,7 @@ function postWatsonRequest(id, message){
 												'Authorization': 'Bearer AKiFgTg8MG7AQaYPi7wu8PFzc9Rv'
 											 }
 								}).then(function(response) {
-									//console.log("Got response Geoenhance request");
+									console.log("Got response Geoenhance request");
 									// Get the response body (JSON parsed - JSON response or jQuery object in case of XML response)
 									
 									var liapiResponse = JSON.parse(JSON.stringify(response.getBody(), null, 2));
@@ -85,7 +85,7 @@ function postWatsonRequest(id, message){
 									 // console.log("poi name " + poi.name);
 									  pois = pois + poi.name + "\n";
 									}
-									//console.log("pois "+": " + pois);
+									console.log("pois "+": " + pois);
 									sendMessage(id, {text: pois});
 								});
 							}else if (stringAPI(responseMessage).contains('911')){
@@ -95,10 +95,10 @@ function postWatsonRequest(id, message){
 								requestify.request(GEOENHANCE_API_CALL,{
 									method: 'GET',
 									headers: {
-												'Authorization': 'Bearer MQpdwBU6XzwnCADuGab2PfnIhSXC'
+												'Authorization': 'Bearer AKiFgTg8MG7AQaYPi7wu8PFzc9Rv'
 											 }
 								}).then(function(response) {
-									//console.log("Got response Geoenhance request");
+									console.log("Got response Geoenhance request");
 									// Get the response body (JSON parsed - JSON response or jQuery object in case of XML response)
 									
 									var liapiResponse = JSON.parse(JSON.stringify(response.getBody(), null, 2));
@@ -107,7 +107,7 @@ function postWatsonRequest(id, message){
 											  " " + liapiResponse.contactPerson.lastName + "\n";
 									contact = contact + "Phone number! " + liapiResponse.phone;
 									
-									//console.log("contact details "+": " + contact);
+									console.log("contact details "+": " + contact);
 									sendMessage(id, {text: contact});
 								});
 							}else{
