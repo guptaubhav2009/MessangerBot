@@ -69,7 +69,7 @@ function postWatsonRequest(id, message){
 								requestify.request(GEOENHANCE_API_CALL,{
 									method: 'GET',
 									headers: {
-												'Authorization': 'Bearer AKiFgTg8MG7AQaYPi7wu8PFzc9Rv'
+												'Authorization': 'Bearer 2ZSn76Nqubd6Bgp7EGTS0px9ZAY1'
 											 }
 								}).then(function(response) {
 									console.log("Got response Geoenhance request");
@@ -95,7 +95,7 @@ function postWatsonRequest(id, message){
 								requestify.request(GEOENHANCE_API_CALL,{
 									method: 'GET',
 									headers: {
-												'Authorization': 'Bearer AKiFgTg8MG7AQaYPi7wu8PFzc9Rv'
+												'Authorization': 'Bearer 2ZSn76Nqubd6Bgp7EGTS0px9ZAY1'
 											 }
 								}).then(function(response) {
 									console.log("Got response Geoenhance request");
