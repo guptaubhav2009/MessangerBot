@@ -100,6 +100,7 @@ function postWatsonRequest(id, message){
 								}).then(function(response) {
 									//console.log("Got response Geoenhance request");
 									// Get the response body (JSON parsed - JSON response or jQuery object in case of XML response)
+									// Added comment
 									
 									var liapiResponse = JSON.parse(JSON.stringify(response.getBody(), null, 2));
 									var contact = "Here is the contact detail!" + "\n";
