@@ -101,7 +101,7 @@ function postWatsonRequest(id, message){
 									  pois = pois + poi.name + "\n";
 									}
 									//console.log("pois "+": " + pois);
-									sendMessage(id,  pois);
+									sendMessage(id,  {text : pois});
 								});
 							}else if (stringAPI(responseMessage).contains('geo911')){
 								//sendMessage(id, {text: responseMessage});
@@ -125,7 +125,7 @@ function postWatsonRequest(id, message){
 									contact = contact + "Phone number! " + liapiResponse.phone;
 									
 									//console.log("contact details "+": " + contact);
-									sendMessage(id,  contact);
+									sendMessage(id,  {text :contact});
 								});
 							} else if (stringAPI(responseMessage).contains('geolife')){
 								//sendMessage(id, {text: responseMessage});
@@ -153,11 +153,11 @@ function postWatsonRequest(id, message){
 									contact = contact + "Phone number! " + liapiResponse.phone;
 									
 									//console.log("contact details "+": " + contact);
-									sendMessage(id,  contact);
+									sendMessage(id,  {text : contact});
 								});
 							}
 							else{
-								sendMessage(id,  responseMessage);
+								sendMessage(id, {text : responseMessage});
 							}
 							
 						}
