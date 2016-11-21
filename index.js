@@ -55,10 +55,14 @@ function postWatsonRequest(id, message){
 							console.error(err);
 						} else {
 							//console.log("Watson request completed " +JSON.stringify(response, null, 2)); //
-							var responseMessage = JSON.parse(JSON.stringify(response, null, 2)).context.api;
+							var responseMessage = JSON.parse(JSON.stringify(response, null, 2)).output.text;
+							var api = JSON.parse(JSON.stringify(response, null, 2)).context.api;
 							var filter = JSON.parse(JSON.stringify(response, null, 2)).context.filter;
 							var address = JSON.parse(JSON.stringify(response, null, 2)).context.address;
 							responseMessage = ""+responseMessage;
+							api = ""+api;
+							filter = ""+filter;
+							address = ""+address;
 							//console.log("FinalMessage " +responseMessage);
 							//console.log("id in watson requwst "+ id);
 							if (stringAPI(responseMessage).contains('geoEnhance')){
