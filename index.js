@@ -67,6 +67,10 @@ function postWatsonRequest(id, message){
 							topic = ""+topic;
 							
 							console.log("topic==== " +topic);
+							console.log("responseMessage==== " +responseMessage);
+							console.log("filter==== " +filter);
+							console.log("address==== " +address);
+							console.log("api==== " +api);
 							//console.log("FinalMessage " +responseMessage);
 							//console.log("id in watson requwst "+ id);
 							if (stringAPI(responseMessage).contains('geoEnhance')){
@@ -97,7 +101,7 @@ function postWatsonRequest(id, message){
 									  pois = pois + poi.name + "\n";
 									}
 									//console.log("pois "+": " + pois);
-									sendMessage(id, {text: pois});
+									sendMessage(id,  pois);
 								});
 							}else if (stringAPI(responseMessage).contains('geo911')){
 								//sendMessage(id, {text: responseMessage});
@@ -121,7 +125,7 @@ function postWatsonRequest(id, message){
 									contact = contact + "Phone number! " + liapiResponse.phone;
 									
 									//console.log("contact details "+": " + contact);
-									sendMessage(id, {text: contact});
+									sendMessage(id,  contact);
 								});
 							} else if (stringAPI(responseMessage).contains('geolife')){
 								//sendMessage(id, {text: responseMessage});
@@ -149,11 +153,11 @@ function postWatsonRequest(id, message){
 									contact = contact + "Phone number! " + liapiResponse.phone;
 									
 									//console.log("contact details "+": " + contact);
-									sendMessage(id, {text: contact});
+									sendMessage(id,  contact);
 								});
 							}
 							else{
-								sendMessage(id, {text: responseMessage});
+								sendMessage(id,  responseMessage);
 							}
 							
 						}
