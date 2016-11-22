@@ -7,6 +7,7 @@ var app = express();
 var requestify = require('requestify');
 var stringAPI = require('string');
 var globalSenderID = "";
+var watsonContext = "";
 
 var conversation = new ConversationV1({
   username: 'f6230e0a-cc43-474f-a0e3-eac5325e7aec',
@@ -63,12 +64,15 @@ function postWatsonRequest(id, message){
 						if (err) {
 							console.error(err);
 						} else {
+							
 							console.log("Watson request completed " +JSON.stringify(response, null, 2)); //
+							watsonContext = JSON.parse(JSON.stringify(response, null, 2)).context;
+							console.log("Watson context " +watsonContext); //
 							var responseMessage = JSON.parse(JSON.stringify(response, null, 2)).output.text;
-							var api = JSON.parse(JSON.stringify(response, null, 2)).context.api;
-							var filter = JSON.parse(JSON.stringify(response, null, 2)).context.filter;
-							var address = JSON.parse(JSON.stringify(response, null, 2)).context.address;
-							var topic = JSON.parse(JSON.stringify(response, null, 2)).context.topic;
+							var api = watsonContext.api;
+							var filter = watsonContext.filter;
+							var address = watsonContext.address;
+							var topic = watsonContext.topic;
 							responseMessage = ""+responseMessage;
 							api = ""+api;
 							filter = ""+filter;
