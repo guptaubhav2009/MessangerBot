@@ -39,6 +39,7 @@ app.post('/webhook', function (req, res) {
         var event = events[0];
         if (event.message && event.message.text) {
 			console.log("In post webhook " + event.message.text);
+			console.log("Sender ID " + event.sender.id);
 			//postWatsonRequest(event.sender.id, event.message.text);
             sendMessage(event.sender.id, {text: "Echo: " + event.message.text});
         }
