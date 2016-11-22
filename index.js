@@ -86,12 +86,12 @@ function postWatsonRequest(id, message){
 								//sendMessage(id, {text: responseMessage});
 								var formattedAddress = "";
 								if (stringAPI(address).contains('is')){
-									console.log("inside is splitter ==== " +address);
-									formattedAddress = stringAPI(address).between('is', '');
+									console.log("inside is splitter ==== ");
+									formattedAddress = stringAPI(address).between('is').toString();
 								}else if (stringAPI(address).contains('at')){
-									formattedAddress = stringAPI(address).between('at', '');
+									formattedAddress = stringAPI(address).between('at').toString();
 								}else if (stringAPI(address).contains('in')){
-									formattedAddress = stringAPI(address).between('in', '');
+									formattedAddress = stringAPI(address).between('in').toString();
 								}
 								console.log("formatted address  ==== " +formattedAddress);
 								
@@ -140,11 +140,11 @@ function postWatsonRequest(id, message){
 								//sendMessage(id, {text: responseMessage});
 								var formattedAddress = "";
 								if (stringAPI(address).contains('is')){
-									formattedAddress = stringAPI(address).between('is', '');
+									formattedAddress = stringAPI(address).between('is').toString();
 								}else if (stringAPI(address).contains('at')){
-									formattedAddress = stringAPI(address).between('at', '');
+									formattedAddress = stringAPI(address).between('at').toString();
 								}else if (stringAPI(address).contains('in')){
-									formattedAddress = stringAPI(address).between('in', '');
+									formattedAddress = stringAPI(address).between('in').toString();
 								}
 								console.log("formatted address  ==== " +formattedAddress);
 								
