@@ -216,16 +216,16 @@ function postWatsonRequest(id, message){
 												'Authorization': accessToken
 											 }
 								}).then(function(response) {
-								console.log("geolife request completed === " );
+								
 								var liapiResponse = JSON.parse(JSON.stringify(response.getBody(), null, 2));
-								console.log("geolife response === " + JSON.stringify(response.getBody(), null, 2));
+								
 									var geolifeResponse = "Here are some suggestions!" + "\n";
 									var geoLifeThemes = liapiResponse.themes;
-									
-									for (k in geoLifeThemes) { 
+									console.log("geoLifeThemes " + JSON.stringify(geoLifeThemes));
+									for (var k in geoLifeThemes) { 
 										if (stringAPI(k).contains(filter)){
 											var data = geoLifeThemes[k].geoLifeThemes.field;
-												for (kfeileds in data){
+												for (var kfeileds in data){
 													geolifeResponse += data[description] + "is " + data[value];
 													geolifeResponse += "\n";
 												}
