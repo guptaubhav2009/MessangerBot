@@ -109,8 +109,8 @@ function postWatsonRequest(id, message){
 									var liapiResponse = JSON.parse(JSON.stringify(response.getBody(), null, 2));
 									X = liapiResponse.candidates[0].geometry.coordinates[0];
 									Y = liapiResponse.candidates[0].geometry.coordinates[1];
-								});
-								console.log("X======" + X);
+									
+									console.log("X======" + X);
 								console.log("Y======" + Y);
 								console.log("Posting LIAPI Geoenhance request");
 								var GEOENHANCE_API_CALL = 'https://api.pitneybowes.com/location-intelligence/geoenhance/v1/poi/bylocation?latitude='+Y+'&longitude='+X+'&category=1002%2C1013%2C1078&maxCandidates=5&searchRadius=10560&searchRadiusUnit=feet&searchDataset=PBData&searchPriority=N';
@@ -136,6 +136,8 @@ function postWatsonRequest(id, message){
 									//console.log("pois "+": " + pois);
 									sendMessage(id,  {text : pois});
 								});
+								});
+								
 							}else if (stringAPI(responseMessage).contains('geo911')){
 								//sendMessage(id, {text: responseMessage});
 								var formattedAddress = "";
@@ -163,8 +165,8 @@ function postWatsonRequest(id, message){
 									var liapiResponse = JSON.parse(JSON.stringify(response.getBody(), null, 2));
 									X = liapiResponse.candidates[0].geometry.coordinates[0];
 									Y = liapiResponse.candidates[0].geometry.coordinates[1];
-								});
-								console.log("X======" + X);
+									
+									console.log("X======" + X);
 								console.log("Y======" + Y);
 								console.log("Making Geo 911 API call");
 								var GEO911_API_CALL = 'https://api.pitneybowes.com/location-intelligence/geo911/v1/psap/bylocation?latitude='+Y+'&longitude='+X;
@@ -187,6 +189,8 @@ function postWatsonRequest(id, message){
 									//console.log("contact details "+": " + contact);
 									sendMessage(id,  {text :contact});
 								});
+								});
+								
 							} else if (stringAPI(responseMessage).contains('geolife')){
 								//sendMessage(id, {text: responseMessage});
 								console.log("Making Geo life API call");
