@@ -70,35 +70,52 @@ function postWatsonRequest(id, message){
 							watsonContext = JSON.parse(JSON.stringify(response, null, 2)).context;
 							//console.log("Watson context " +JSON.stringify(watsonContext)); //
 							var responseMessage = JSON.parse(JSON.stringify(response, null, 2)).output.text;
-							var api = watsonContext.api;
-							var filter = watsonContext.filter;
+						    var filter = watsonContext.filter;
 							var address = watsonContext.address;
-							//var topic = watsonContext.topic;
 							responseMessage = ""+responseMessage;
-							api = ""+api;
 							filter = ""+filter;
 							address = ""+address;
-							//topic = ""+topic;
-							
-							//console.log("topic==== " +topic);
 							console.log("responseMessage==== " +responseMessage);
 							console.log("filter==== " +filter);
 							console.log("address==== " +address);
-							console.log("api==== " +api);
+							
 							//console.log("FinalMessage " +responseMessage);
 							//console.log("id in watson requwst "+ id);
 							if (stringAPI(responseMessage).contains('geoEnhance')){
 								//sendMessage(id, {text: responseMessage});
+								var formattedAddress = "";
+								if stringAPI(address).contains("is"){
+									formattedAddress = stringAPI(address).between('is', '');
+								}else if stringAPI(address).contains("at"){
+									formattedAddress = stringAPI(address).between('at', '');
+								}else if stringAPI(address).contains("in"){
+									formattedAddress = stringAPI(address).between('in', '');
+								}
+								console.log("formatted address  ==== " +formattedAddress);
+								
+								
+								var X;
+								var Y;
+								
+								var GEOGODE_REQUEST = 'https://api.pitneybowes.com/location-intelligence/geocode-service/v1/transient/premium/geocode?country=USA&mainAddress='+formattedAddress+'&matchMode=Standard&fallbackGeo=true&fallbackPostal=true&maxCands=1&streetOffset=7&streetOffsetUnits=METERS&cornerOffset=7&cornerOffsetUnits=METERS';
+								requestify.request(GEOGODE_REQUEST,{
+									method: 'GET',
+									headers: {
+												'Authorization': 'Bearer B6VGPTiGMqoUkEJXszfWuXhIT3dL'
+											 }
+								}).then(function(response) {
+									var liapiResponse = JSON.parse(JSON.stringify(response.getBody(), null, 2));
+									X = liapiResponse.candidates[0].geometry.coordinates[0];
+									Y = liapiResponse.candidates[0].geometry.coordinates[1];
+								});
+								console.log("X======" + X);
+								console.log("Y======" + Y);
 								console.log("Posting LIAPI Geoenhance request");
-								console.log("Address ====" +address );
-								//var GE = GEOAPIS_V1.geoEnhance('AKiFgTg8MG7AQaYPi7wu8PFzc9Rv'); MQpdwBU6XzwnCADuGab2PfnIhSXC
-								//GE.getPOI({latitude:42.5309, longitude:-73.6572, category:1023,
-								//searchRadius:10560, maxCandidates:10}, 'geoApisCallback');
-								var GEOENHANCE_API_CALL = 'https://api.pitneybowes.com/location-intelligence/geoenhance/v1/poi/bylocation?latitude=36.107348&longitude=-115.178772&category=1002%2C1013%2C1078&maxCandidates=5&searchRadius=10560&searchRadiusUnit=feet&searchDataset=PBData&searchPriority=N';
+								var GEOENHANCE_API_CALL = 'https://api.pitneybowes.com/location-intelligence/geoenhance/v1/poi/bylocation?latitude='+Y+'&longitude='+X+'&category=1002%2C1013%2C1078&maxCandidates=5&searchRadius=10560&searchRadiusUnit=feet&searchDataset=PBData&searchPriority=N';
 								requestify.request(GEOENHANCE_API_CALL,{
 									method: 'GET',
 									headers: {
-												'Authorization': 'Bearer yEeW2jPTm4OR0hbBfVkvRv2UKD0s'
+												'Authorization': 'Bearer B6VGPTiGMqoUkEJXszfWuXhIT3dL'
 											 }
 								}).then(function(response) {
 									//console.log("Got response Geoenhance request");
@@ -119,13 +136,40 @@ function postWatsonRequest(id, message){
 								});
 							}else if (stringAPI(responseMessage).contains('geo911')){
 								//sendMessage(id, {text: responseMessage});
-								console.log("Making Geo 911 API call");
-								console.log("Address ====" +address );
-								var GEOENHANCE_API_CALL = 'https://api.pitneybowes.com/location-intelligence/geo911/v1/psap/bylocation?latitude=36.107348&longitude=-115.178772';
-								requestify.request(GEOENHANCE_API_CALL,{
+								var formattedAddress = "";
+								if stringAPI(address).contains("is"){
+									formattedAddress = stringAPI(address).between('is', '');
+								}else if stringAPI(address).contains("at"){
+									formattedAddress = stringAPI(address).between('at', '');
+								}else if stringAPI(address).contains("in"){
+									formattedAddress = stringAPI(address).between('in', '');
+								}
+								console.log("formatted address  ==== " +formattedAddress);
+								
+								
+								
+								var X;
+								var Y;
+								
+								var GEOGODE_REQUEST = 'https://api.pitneybowes.com/location-intelligence/geocode-service/v1/transient/premium/geocode?country=USA&mainAddress='+formattedAddress+'&matchMode=Standard&fallbackGeo=true&fallbackPostal=true&maxCands=1&streetOffset=7&streetOffsetUnits=METERS&cornerOffset=7&cornerOffsetUnits=METERS';
+								requestify.request(GEOGODE_REQUEST,{
 									method: 'GET',
 									headers: {
-												'Authorization': 'Bearer yEeW2jPTm4OR0hbBfVkvRv2UKD0s'
+												'Authorization': 'Bearer B6VGPTiGMqoUkEJXszfWuXhIT3dL'
+											 }
+								}).then(function(response) {
+									var liapiResponse = JSON.parse(JSON.stringify(response.getBody(), null, 2));
+									X = liapiResponse.candidates[0].geometry.coordinates[0];
+									Y = liapiResponse.candidates[0].geometry.coordinates[1];
+								});
+								console.log("X======" + X);
+								console.log("Y======" + Y);
+								console.log("Making Geo 911 API call");
+								var GEO911_API_CALL = 'https://api.pitneybowes.com/location-intelligence/geo911/v1/psap/bylocation?latitude='+Y+'&longitude='+X;
+								requestify.request(GEO911_API_CALL,{
+									method: 'GET',
+									headers: {
+												'Authorization': 'Bearer B6VGPTiGMqoUkEJXszfWuXhIT3dL'
 											 }
 								}).then(function(response) {
 									//console.log("Got response Geoenhance request");
@@ -153,7 +197,7 @@ function postWatsonRequest(id, message){
 								requestify.request(GEOENHANCE_API_CALL,{
 									method: 'GET',
 									headers: {
-												'Authorization': 'Bearer yEeW2jPTm4OR0hbBfVkvRv2UKD0s'
+												'Authorization': 'Bearer B6VGPTiGMqoUkEJXszfWuXhIT3dL'
 											 }
 								}).then(function(response) {
 									//console.log("Got response Geoenhance request");
