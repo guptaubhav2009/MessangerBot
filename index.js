@@ -208,7 +208,7 @@ function postWatsonRequest(id, message){
 								console.log("formatted address  ==== " +formattedAddress);
 								console.log("Making Geo life API call");
 
-								var GEOLIFE_API_CALL = 'https://api.pitneybowes.com/location-intelligence/geolife/v1/demographics/byaddress?address='+formattedAddress+'&profile=Top3Ascending&country=USA&filter='+filter';
+								var GEOLIFE_API_CALL = 'https://api.pitneybowes.com/location-intelligence/geolife/v1/demographics/byaddress?address='+formattedAddress+'&profile=Top3Ascending&country=USA&filter='+filter;
 								
 								requestify.request(GEOLIFE_API_CALL,{
 									method: 'GET',
