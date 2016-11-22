@@ -76,8 +76,8 @@ function postWatsonRequest(id, message){
 							responseMessage = ""+responseMessage;
 							filter = ""+filter;
 							address = ""+address;
-							console.log("responseMessage==== " +responseMessage);
-							console.log("filter==== " +filter);
+							//console.log("responseMessage==== " +responseMessage);
+							//console.log("filter==== " +filter);
 							console.log("address==== " +address);
 							
 							//console.log("FinalMessage " +responseMessage);
@@ -93,7 +93,7 @@ function postWatsonRequest(id, message){
 								}else if (stringAPI(address).contains('in')){
 									formattedAddress = stringAPI(address).between('in').toString();
 								}
-								console.log("formatted address  ==== " +formattedAddress);
+								//console.log("formatted address  ==== " +formattedAddress);
 								
 								
 								var X;
@@ -110,9 +110,9 @@ function postWatsonRequest(id, message){
 									X = liapiResponse.candidates[0].geometry.coordinates[0];
 									Y = liapiResponse.candidates[0].geometry.coordinates[1];
 									
-									console.log("X======" + X);
-								console.log("Y======" + Y);
-								console.log("Posting LIAPI Geoenhance request");
+									//console.log("X======" + X);
+								//console.log("Y======" + Y);
+								//console.log("Posting LIAPI Geoenhance request");
 								var GEOENHANCE_API_CALL = 'https://api.pitneybowes.com/location-intelligence/geoenhance/v1/poi/bylocation?latitude='+Y+'&longitude='+X+'&category=1002%2C1013%2C1078&maxCandidates=5&searchRadius=10560&searchRadiusUnit=feet&searchDataset=PBData&searchPriority=N';
 								requestify.request(GEOENHANCE_API_CALL,{
 									method: 'GET',
@@ -148,7 +148,7 @@ function postWatsonRequest(id, message){
 								}else if (stringAPI(address).contains('in')){
 									formattedAddress = stringAPI(address).between('in').toString();
 								}
-								console.log("formatted address  ==== " +formattedAddress);
+								//console.log("formatted address  ==== " +formattedAddress);
 								
 								
 								
@@ -166,9 +166,9 @@ function postWatsonRequest(id, message){
 									X = liapiResponse.candidates[0].geometry.coordinates[0];
 									Y = liapiResponse.candidates[0].geometry.coordinates[1];
 									
-									console.log("X======" + X);
-								console.log("Y======" + Y);
-								console.log("Making Geo 911 API call");
+									//console.log("X======" + X);
+								//console.log("Y======" + Y);
+								//console.log("Making Geo 911 API call");
 								var GEO911_API_CALL = 'https://api.pitneybowes.com/location-intelligence/geo911/v1/psap/bylocation?latitude='+Y+'&longitude='+X;
 								requestify.request(GEO911_API_CALL,{
 									method: 'GET',
@@ -193,31 +193,46 @@ function postWatsonRequest(id, message){
 								
 							} else if (stringAPI(responseMessage).contains('geolife')){
 								//sendMessage(id, {text: responseMessage});
-								console.log("Making Geo life API call");
+								
+								var formattedAddress = "";
+								if (stringAPI(address).contains('is')){
+									formattedAddress = stringAPI(address).between('is').toString();
+								}else if (stringAPI(address).contains('at')){
+									formattedAddress = stringAPI(address).between('at').toString();
+								}else if (stringAPI(address).contains('in')){
+									formattedAddress = stringAPI(address).between('in').toString();
+								}
 								
 								filter = filter+"Theme";
 								console.log("filter === "+filter );
+								console.log("formatted address  ==== " +formattedAddress);
+								console.log("Making Geo life API call");
+
+								var GEOLIFE_API_CALL = 'https://api.pitneybowes.com/location-intelligence/geolife/v1/demographics/byaddress?address='+formattedAddress+'&profile=Top3Ascending&country=USA&filter='+filter';
 								
-								console.log("Address ====" +address );
-								var GEOENHANCE_API_CALL = 'https://api.pitneybowes.com/location-intelligence/geo911/v1/psap/bylocation?latitude=36.107348&longitude=-115.178772';
-								requestify.request(GEOENHANCE_API_CALL,{
+								requestify.request(GEOLIFE_API_CALL,{
 									method: 'GET',
 									headers: {
 												'Authorization': accessToken
 											 }
 								}).then(function(response) {
-									//console.log("Got response Geoenhance request");
-									// Get the response body (JSON parsed - JSON response or jQuery object in case of XML response)
-									// Added comment
+
+								var liapiResponse = JSON.parse(JSON.stringify(response.getBody(), null, 2));
+									var geolifeResponse = "Here are some suggestions!" + "\n";
+									var geoLifeThemes = liapiResponse.themes;
 									
-									var liapiResponse = JSON.parse(JSON.stringify(response.getBody(), null, 2));
-									var contact = "Here is the contact detail!" + "\n";
-									contact = contact + "Name! " + liapiResponse.contactPerson.title + " " + liapiResponse.contactPerson.prefix + " " + liapiResponse.contactPerson.firstName +
-											  " " + liapiResponse.contactPerson.lastName + "\n";
-									contact = contact + "Phone number! " + liapiResponse.phone;
-									
-									//console.log("contact details "+": " + contact);
-									sendMessage(id,  {text : contact});
+									for (k in geoLifeThemes) { 
+										if (stringAPI(k).contains(filter)){
+											var data = geoLifeThemes[k].geoLifeThemes.field;
+												for (kfeileds in data){
+													geolifeResponse += data[description] + "is " + data[value];
+													geolifeResponse += "\n";
+												}
+											}
+										}
+										
+									console.log("geolifeResponse " + geolifeResponse);
+									sendMessage(id,  {text : geolifeResponse});
 								});
 							}
 							else{
