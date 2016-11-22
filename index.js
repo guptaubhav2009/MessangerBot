@@ -216,8 +216,9 @@ function postWatsonRequest(id, message){
 												'Authorization': accessToken
 											 }
 								}).then(function(response) {
-
+								console.log("geolife request completed === " );
 								var liapiResponse = JSON.parse(JSON.stringify(response.getBody(), null, 2));
+								console.log("geolife response === " + JSON.stringify(response.getBody(), null, 2));
 									var geolifeResponse = "Here are some suggestions!" + "\n";
 									var geoLifeThemes = liapiResponse.themes;
 									
