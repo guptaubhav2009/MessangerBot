@@ -45,7 +45,7 @@ app.post('/webhook', function (req, res) {
 			}
 			console.log("Sender ID " + event.sender.id);
 			if (globalSenderID === event.sender.id){
-				console.log("In post webhook " + event.message.text);
+				//console.log("In post webhook " + event.message.text);
 				
 				postWatsonRequest(event.sender.id, event.message.text);
 				//sendMessage(event.sender.id, {text: "Echo: " + event.message.text});
@@ -68,19 +68,19 @@ function postWatsonRequest(id, message){
 							
 							//console.log("Watson request completed " +JSON.stringify(response, null, 2)); //
 							watsonContext = JSON.parse(JSON.stringify(response, null, 2)).context;
-							console.log("Watson context " +JSON.stringify(watsonContext)); //
+							//console.log("Watson context " +JSON.stringify(watsonContext)); //
 							var responseMessage = JSON.parse(JSON.stringify(response, null, 2)).output.text;
 							var api = watsonContext.api;
 							var filter = watsonContext.filter;
 							var address = watsonContext.address;
-							var topic = watsonContext.topic;
+							//var topic = watsonContext.topic;
 							responseMessage = ""+responseMessage;
 							api = ""+api;
 							filter = ""+filter;
 							address = ""+address;
-							topic = ""+topic;
+							//topic = ""+topic;
 							
-							console.log("topic==== " +topic);
+							//console.log("topic==== " +topic);
 							console.log("responseMessage==== " +responseMessage);
 							console.log("filter==== " +filter);
 							console.log("address==== " +address);
