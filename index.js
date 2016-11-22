@@ -224,14 +224,15 @@ function postWatsonRequest(id, message){
 									
 									for (var k in geoLifeThemes) { 
 									//console.log("geoLifeThemes  key   = " + stringAPI(k));
-										if (stringAPI(k).contains(filter)){
-											console.log("filter successful ");
-											var data = geoLifeThemes[filter].rangeVariable.field;
-												for (var i =0; i< data.length; i++){
-													geolifeResponse += data[i].description + "is " + data[i].value;
+										
+											
+											var fieldData = geoLifeThemes[k].rangeVariable.field;
+											console.log("data=== " + JSON.stringify(fieldData));
+												for (var i =0; i< fieldData.length; i++){
+													geolifeResponse += fieldData[i].description + "is " + fieldData[i].value;
 													geolifeResponse += "\n";
 												}
-											}
+											
 										}
 										
 									console.log("geolifeResponse " + geolifeResponse);
