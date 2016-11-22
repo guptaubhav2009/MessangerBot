@@ -203,7 +203,7 @@ function postWatsonRequest(id, message){
 									formattedAddress = stringAPI(address).between('in').toString();
 								}
 								
-								filter = filter+"Theme";
+								filter = stringAPI(filter+"Theme").trim();
 								console.log("filter === "+filter );
 								console.log("formatted address  ==== " +formattedAddress);
 								console.log("Making Geo life API call");
@@ -223,8 +223,9 @@ function postWatsonRequest(id, message){
 									var geoLifeThemes = liapiResponse.themes;
 									
 									for (var k in geoLifeThemes) { 
-									console.log("geoLifeThemes  key   = " + stringAPI(k));
+									//console.log("geoLifeThemes  key   = " + stringAPI(k));
 										if (stringAPI(k).contains(filter)){
+											console.log("filter successful ");
 											var data = geoLifeThemes[k].rangeVariable.field;
 												for (var i =0; i< data.length; i++){
 													geolifeResponse += data[i].description + "is " + data[i].value;
