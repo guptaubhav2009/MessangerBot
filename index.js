@@ -65,7 +65,7 @@ function postWatsonRequest(id, message){
 							console.error(err);
 						} else {
 							
-							console.log("Watson request completed " +JSON.stringify(response, null, 2)); //
+							//console.log("Watson request completed " +JSON.stringify(response, null, 2)); //
 							watsonContext = JSON.parse(JSON.stringify(response, null, 2)).context;
 							console.log("Watson context " +watsonContext); //
 							var responseMessage = JSON.parse(JSON.stringify(response, null, 2)).output.text;
