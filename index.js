@@ -7,7 +7,7 @@ var app = express();
 var requestify = require('requestify');
 var stringAPI = require('string');
 var globalSenderID = "";
-var watsonContext = "";
+var watsonContext = {};
 
 var conversation = new ConversationV1({
   username: 'f6230e0a-cc43-474f-a0e3-eac5325e7aec',
@@ -60,7 +60,7 @@ function postWatsonRequest(id, message){
 	conversation.message({
 			input: { text: message },
 			workspace_id: 'e1c9c10b-5b65-4866-a20d-317fca1b59e6',
-			context: {text : watsonContext}
+			context: watsonContext
 			}, function(err, response) {
 						if (err) {
 							console.error(err);
