@@ -225,9 +225,9 @@ function postWatsonRequest(id, message){
 									for (var k in geoLifeThemes) { 
 									console.log("geoLifeThemes  key   = " + stringAPI(k));
 										if (stringAPI(k).contains(filter)){
-											var data = geoLifeThemes[k].geoLifeThemes.field;
-												for (var kfeileds in data){
-													geolifeResponse += data[description] + "is " + data[value];
+											var data = geoLifeThemes[k].rangeVariable.field;
+												for (var i =0; i< data.length; i++){
+													geolifeResponse += data[i].description + "is " + data[i].value;
 													geolifeResponse += "\n";
 												}
 											}
