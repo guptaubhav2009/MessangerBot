@@ -226,7 +226,7 @@ function postWatsonRequest(id, message){
 									//console.log("geoLifeThemes  key   = " + stringAPI(k));
 										if (stringAPI(k).contains(filter)){
 											console.log("filter successful ");
-											var data = geoLifeThemes[k].rangeVariable.field;
+											var data = geoLifeThemes[filter].rangeVariable.field;
 												for (var i =0; i< data.length; i++){
 													geolifeResponse += data[i].description + "is " + data[i].value;
 													geolifeResponse += "\n";
