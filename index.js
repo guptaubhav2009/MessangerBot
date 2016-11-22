@@ -221,29 +221,19 @@ function postWatsonRequest(id, message){
 								
 									var geolifeResponse = "Here are some suggestions!" + "\n";
 									var geoLifeThemes = liapiResponse.themes;
-									
 									for (var k in geoLifeThemes) { 
-									
-										
-											
-											var fieldData = geoLifeThemes[k].rangeVariable);
-											
+											var fieldData = geoLifeThemes[k].rangeVariable;
 												for (var j in fieldData){
 													if (stringAPI(j).contains('field')){
-														
 														var filedValues = fieldData[j];
 														console.log("geoLifeThemes  range values  data = " + JSON.stringify(filedValues);
 														for(int i = 0; i < filedValues.length; i++){
-															
 															geolifeResponse += filedValues[i].description + "is " + filedValues[i].value;
 															geolifeResponse += "\n";
 														}
-														
 													}
-													
 												}
-											
-										}
+											}
 										
 									console.log("geolifeResponse " + geolifeResponse);
 									sendMessage(id,  {text : geolifeResponse});
