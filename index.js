@@ -224,7 +224,9 @@ function postWatsonRequest(id, message){
 									for (var k in geoLifeThemes) { 
 											var fieldData = geoLifeThemes[k].rangeVariable;
 												for (var p in fieldData){
+													console.log("geoLifeThemes  range values  keys = " + stringAPI(p));
 													if (stringAPI(p).contains('field')){
+														console.log("inside ANubhav");
 														var filedValues = fieldData[p];
 														console.log("geoLifeThemes  range values  data = " + JSON.stringify(filedValues));
 														for(var i = 0; i < filedValues.length; i++){
