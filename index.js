@@ -8,6 +8,7 @@ var requestify = require('requestify');
 var stringAPI = require('string');
 var globalSenderID = "";
 var watsonContext = {};
+var accessToken = 'Bearer B6VGPTiGMqoUkEJXszfWuXhIT3dL';
 
 var conversation = new ConversationV1({
   username: 'f6230e0a-cc43-474f-a0e3-eac5325e7aec',
@@ -101,7 +102,7 @@ function postWatsonRequest(id, message){
 								requestify.request(GEOGODE_REQUEST,{
 									method: 'GET',
 									headers: {
-												'Authorization': 'Bearer B6VGPTiGMqoUkEJXszfWuXhIT3dL'
+												'Authorization': accessToken
 											 }
 								}).then(function(response) {
 									var liapiResponse = JSON.parse(JSON.stringify(response.getBody(), null, 2));
@@ -115,7 +116,7 @@ function postWatsonRequest(id, message){
 								requestify.request(GEOENHANCE_API_CALL,{
 									method: 'GET',
 									headers: {
-												'Authorization': 'Bearer B6VGPTiGMqoUkEJXszfWuXhIT3dL'
+												'Authorization': accessToken
 											 }
 								}).then(function(response) {
 									//console.log("Got response Geoenhance request");
@@ -155,7 +156,7 @@ function postWatsonRequest(id, message){
 								requestify.request(GEOGODE_REQUEST,{
 									method: 'GET',
 									headers: {
-												'Authorization': 'Bearer B6VGPTiGMqoUkEJXszfWuXhIT3dL'
+												'Authorization': accessToken
 											 }
 								}).then(function(response) {
 									var liapiResponse = JSON.parse(JSON.stringify(response.getBody(), null, 2));
@@ -169,7 +170,7 @@ function postWatsonRequest(id, message){
 								requestify.request(GEO911_API_CALL,{
 									method: 'GET',
 									headers: {
-												'Authorization': 'Bearer B6VGPTiGMqoUkEJXszfWuXhIT3dL'
+												'Authorization': accessToken
 											 }
 								}).then(function(response) {
 									//console.log("Got response Geoenhance request");
@@ -197,7 +198,7 @@ function postWatsonRequest(id, message){
 								requestify.request(GEOENHANCE_API_CALL,{
 									method: 'GET',
 									headers: {
-												'Authorization': 'Bearer B6VGPTiGMqoUkEJXszfWuXhIT3dL'
+												'Authorization': accessToken
 											 }
 								}).then(function(response) {
 									//console.log("Got response Geoenhance request");
