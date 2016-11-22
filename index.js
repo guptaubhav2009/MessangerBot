@@ -223,9 +223,9 @@ function postWatsonRequest(id, message){
 									var geoLifeThemes = liapiResponse.themes;
 									for (var k in geoLifeThemes) { 
 											var fieldData = geoLifeThemes[k].rangeVariable;
-												for (var j in fieldData){
-													if (stringAPI(j).contains('field')){
-														var filedValues = fieldData[j];
+												for (var p in fieldData){
+													if (stringAPI(p).contains('field')){
+														var filedValues = fieldData[p];
 														console.log("geoLifeThemes  range values  data = " + JSON.stringify(filedValues));
 														for(int i = 0; i < filedValues.length; i++){
 															geolifeResponse += filedValues[i].description + "is " + filedValues[i].value;
