@@ -226,7 +226,7 @@ function postWatsonRequest(id, message){
 												for (var j in fieldData){
 													if (stringAPI(j).contains('field')){
 														var filedValues = fieldData[j];
-														console.log("geoLifeThemes  range values  data = " + JSON.stringify(filedValues);
+														console.log("geoLifeThemes  range values  data = " + JSON.stringify(filedValues));
 														for(int i = 0; i < filedValues.length; i++){
 															geolifeResponse += filedValues[i].description + "is " + filedValues[i].value;
 															geolifeResponse += "\n";
