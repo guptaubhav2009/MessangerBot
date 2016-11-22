@@ -221,8 +221,9 @@ function postWatsonRequest(id, message){
 								
 									var geolifeResponse = "Here are some suggestions!" + "\n";
 									var geoLifeThemes = liapiResponse.themes;
-									console.log("geoLifeThemes " + JSON.stringify(geoLifeThemes));
+									
 									for (var k in geoLifeThemes) { 
+									console.log("geoLifeThemes  key   = " + stringAPI(k));
 										if (stringAPI(k).contains(filter)){
 											var data = geoLifeThemes[k].geoLifeThemes.field;
 												for (var kfeileds in data){
