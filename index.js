@@ -7,7 +7,7 @@ var app = express();
 var requestify = require('requestify');
 var stringAPI = require('string');
 var globalSenderID = "";
-var watsonContext = "context:{}";
+var watsonContext = "";
 
 var conversation = new ConversationV1({
   username: 'f6230e0a-cc43-474f-a0e3-eac5325e7aec',
