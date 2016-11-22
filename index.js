@@ -222,19 +222,18 @@ function postWatsonRequest(id, message){
 									var geolifeResponse = "Here are some suggestions!" + "\n";
 									var geoLifeThemes = liapiResponse.themes;
 									for (var k in geoLifeThemes) { 
-											var fieldData = geoLifeThemes[k].rangeVariable;
-												for (var p in fieldData){
-													console.log("geoLifeThemes  range values  keys = " + stringAPI(p));
-													if (stringAPI(p).contains('field')){
-														console.log("inside ANubhav");
-														var filedValues = fieldData[p];
-														console.log("geoLifeThemes  range values  data = " + JSON.stringify(filedValues));
-														for(var i = 0; i < filedValues.length; i++){
-															geolifeResponse += filedValues[i].description + "is " + filedValues[i].value;
+											var fieldData = geoLifeThemes[k].rangeVariable[4];
+												
+													
+														
+														
+														console.log("geoLifeThemes  range values  data = " + JSON.stringify(fieldData));
+														for(var i = 0; i < fieldData.length; i++){
+															geolifeResponse += fieldData[i].description + "is " + fieldData[i].value;
 															geolifeResponse += "\n";
 														}
-													}
-												}
+													
+												
 											}
 										
 									console.log("geolifeResponse " + geolifeResponse);
