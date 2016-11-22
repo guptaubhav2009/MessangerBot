@@ -85,11 +85,11 @@ function postWatsonRequest(id, message){
 							if (stringAPI(responseMessage).contains('geoEnhance')){
 								//sendMessage(id, {text: responseMessage});
 								var formattedAddress = "";
-								if stringAPI(address).contains("is"){
+								if (stringAPI(address).contains("is")){
 									formattedAddress = stringAPI(address).between('is', '');
-								}else if stringAPI(address).contains("at"){
+								}else if (stringAPI(address).contains("at")){
 									formattedAddress = stringAPI(address).between('at', '');
-								}else if stringAPI(address).contains("in"){
+								}else if (stringAPI(address).contains("in")){
 									formattedAddress = stringAPI(address).between('in', '');
 								}
 								console.log("formatted address  ==== " +formattedAddress);
