@@ -60,7 +60,7 @@ function postWatsonRequest(id, message){
 	conversation.message({
 			input: { text: message },
 			workspace_id: 'e1c9c10b-5b65-4866-a20d-317fca1b59e6',
-			context:watsonContext
+			context: {text : watsonContext}
 			}, function(err, response) {
 						if (err) {
 							console.error(err);
