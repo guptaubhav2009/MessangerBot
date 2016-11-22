@@ -223,7 +223,7 @@ function postWatsonRequest(id, message){
 									var geoLifeThemes = liapiResponse.themes;
 									
 									for (var k in geoLifeThemes) { 
-									//console.log("geoLifeThemes  key   = " + stringAPI(k));
+									console.log("geoLifeThemes  key  data = " + JSON.stringify(geoLifeThemes[k]));
 										
 											
 											var fieldData = geoLifeThemes[k].rangeVariable.field;
