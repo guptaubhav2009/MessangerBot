@@ -225,15 +225,15 @@ function postWatsonRequest(id, message){
 											var fieldData = geoLifeThemes[k].rangeVariable;
 												for(var p in fieldData){
 													var fieldValues = fieldData[p].field;
-													console.log("geolifeResponse fieldValues ==" + JSON.stringify(fieldValues));
+													//console.log("geolifeResponse fieldValues ==" + JSON.stringify(fieldValues));
 													for(var i = 0; i < fieldValues.length; i++){
-														geolifeResponse += fieldValues[i].description + "is " + fieldValues[i].value;
+														geolifeResponse += fieldValues[i].description + " is " + fieldValues[i].value;
 														geolifeResponse += "\n";
 													}
 												}
 											}
 										
-									console.log("geolifeResponse " + geolifeResponse);
+									//console.log("geolifeResponse " + geolifeResponse);
 									sendMessage(id,  {text : geolifeResponse});
 								});
 							}
