@@ -8,7 +8,7 @@ var requestify = require('requestify');
 var stringAPI = require('string');
 var globalSenderID = "";
 var watsonContext = {};
-var accessToken = 'Bearer B6VGPTiGMqoUkEJXszfWuXhIT3dL';
+var accessToken = 'Bearer 49rhWrA1GYgnkbEr5w5qHMCqDMbO';
 
 var conversation = new ConversationV1({
   username: 'f6230e0a-cc43-474f-a0e3-eac5325e7aec',
